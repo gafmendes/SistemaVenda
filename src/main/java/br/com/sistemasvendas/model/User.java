@@ -3,16 +3,28 @@ package br.com.sistemasvendas.model;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.br.CNPJ;
+import org.hibernate.validator.constraints.br.CPF;
 
 @Entity
 public class User {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
+	@NotBlank(message = "Nome deve ser informado")
 	private String name;
 
+	@CPF
 	private String cpf;
 
+	@CNPJ
 	private String cnpj;
 
 	private List<Product> product;
