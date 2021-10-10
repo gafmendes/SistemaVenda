@@ -69,6 +69,7 @@ public class ProductDAO {
 		try (Session session = HibernateUtil.getSessionFactory().openSession()){
 			// comeca a transacao com o banco de dados
 			transaction = session.beginTransaction();
+			// deleta o produto
 			Product product = session.get(Product.class, id);
 			if(product != null) {
 				session.delete(product);
