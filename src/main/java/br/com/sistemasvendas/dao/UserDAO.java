@@ -84,7 +84,7 @@ public class UserDAO {
 		}
 	}
 
-	public void get(int id) {
+	public User get(int id) {
 		Transaction transaction = null;
 		User user = null;
 		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
@@ -101,6 +101,7 @@ public class UserDAO {
 			}
 			e.printStackTrace();
 		}
+		return user;
 	}
 
 	@SuppressWarnings("unchecked")

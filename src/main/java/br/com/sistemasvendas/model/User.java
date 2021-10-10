@@ -22,10 +22,8 @@ public class User {
 	private String name;
 
 	@CPF
-	private String cpf;
-
 	@CNPJ
-	private String cnpj;
+	private String cpfOrCnpj;
 
 	private List<Product> product;
 
@@ -33,12 +31,21 @@ public class User {
 
 	}
 
-	public User(int id, String name, String cpf, String cnpj, List<Product> product) {
+	public User(String name, String cpfOrCnpj) {
+		this.name = name;
+		this.cpfOrCnpj = cpfOrCnpj;
+	}
 
+	public User(int id, String name, String cpfOrCnpj) {
 		this.id = id;
 		this.name = name;
-		this.cpf = cpf;
-		this.cnpj = cnpj;
+		this.cpfOrCnpj = cpfOrCnpj;
+	}
+
+	public User(int id, String name, String cpfOrCnpj, List<Product> product) {
+		this.id = id;
+		this.name = name;
+		this.cpfOrCnpj = cpfOrCnpj;
 		this.product = product;
 	}
 
@@ -58,20 +65,12 @@ public class User {
 		this.name = name;
 	}
 
-	public String getCpf() {
-		return cpf;
+	public String getCpfOrCnpj() {
+		return cpfOrCnpj;
 	}
 
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
-	}
-
-	public String getCnpj() {
-		return cnpj;
-	}
-
-	public void setCnpj(String cnpj) {
-		this.cnpj = cnpj;
+	public void setCpfOrCnpj(String cpfOrCnpj) {
+		this.cpfOrCnpj = cpfOrCnpj;
 	}
 
 	public List<Product> getProduct() {

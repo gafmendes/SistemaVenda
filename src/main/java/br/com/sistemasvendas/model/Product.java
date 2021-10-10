@@ -19,7 +19,6 @@ public class Product {
 
 	private String descricao;
 
-	
 	private Double preco;
 
 	@ManyToOne(fetch = FetchType.EAGER, optional = false)
@@ -32,11 +31,17 @@ public class Product {
 	}
 
 	public Product(int id, String descricao, Double preco, User user) {
-		super();
+
 		this.id = id;
 		this.descricao = descricao;
 		this.preco = preco;
 		this.user = user;
+	}
+
+	public Product(String descricao, Double preco) {
+
+		this.descricao = descricao;
+		this.preco = preco;
 	}
 
 	public int getId() {

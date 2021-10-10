@@ -11,8 +11,8 @@ public class Constants {
 
 	public static final String ID_COL_NAME = "id";
 	public static final String NAME_COL_NAME = "name";
-	public static final String CPF_COL_NAME = "cpf";
-	public static final String CNPJ_COL_NAME = "cnpj";
+	public static final String CPF_OR_CNPJ_COL_NAME = "cpf_cnpj";
+	
 
 	public static final String USER_ID_COL_NAME = "user_id";
 	public static final String DESCRICAO_COL_NAME = "descricao";
