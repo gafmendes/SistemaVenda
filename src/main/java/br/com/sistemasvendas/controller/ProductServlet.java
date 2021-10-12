@@ -6,11 +6,10 @@ import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.h2.pagestore.db.SpatialTreeIndex;
 
 import br.com.sistemasvendas.dao.ProductDAO;
 import br.com.sistemasvendas.dao.UserDAO;
@@ -18,6 +17,7 @@ import br.com.sistemasvendas.model.Product;
 import br.com.sistemasvendas.model.User;
 import br.com.sistemasvendas.util.Constants;
 
+@WebServlet("/product/*")
 public class ProductServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
@@ -98,20 +98,22 @@ public class ProductServlet extends HttpServlet {
 		dispatcher.forward(request, response);
 	}
 
-	private void insert(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
+	private void insert(HttpServletRequest request, HttpServletResponse response)
+			throws SQLException, IOException {
 		String descricao = request.getParameter(Constants.DESCRICAO_COL_NAME);
 		Double preco = Double.parseDouble(request.getParameter(Constants.PRECO_COL_NAME));
 
-		int userId = Integer.parseInt(request.getParameter(Constants.ID_COL_NAME));
+		int userId = Integer.parseInt(request.getParameter(Constants.USER_ID_COL_NAME));
 
 		User user = userDAO.get(userId);
-		Product newProduct = new Product(descricao, preco);
+		Product newProduct = new Product(descricao, preco, user);
 
 		productDAO.save(newProduct);
 		response.sendRedirect(request.getContextPath() + "/product?action=list&user_id=" + userId);
 	}
 
-	private void update(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
+	private void update(HttpServletRequest request, HttpServletResponse response)
+			throws SQLException, IOException {
 		int id = Integer.parseInt(request.getParameter(Constants.ID_COL_NAME));
 		int userId = Integer.parseInt(request.getParameter(Constants.USER_ID_COL_NAME));
 
@@ -126,12 +128,13 @@ public class ProductServlet extends HttpServlet {
 		response.sendRedirect(request.getContextPath() + "/product?action=list&user_id=" + userId);
 	}
 
-	private void delete(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
+	private void delete(HttpServletRequest request, HttpServletResponse response)
+			throws SQLException, IOException {
 		int id = Integer.parseInt(request.getParameter(Constants.ID_COL_NAME));
 		int userId = Integer.parseInt(request.getParameter(Constants.USER_ID_COL_NAME));
 
 		productDAO.delete(id);
-		response.sendRedirect(request.getContextPath() + "/phone?action=list&user_id=" + userId);
+		response.sendRedirect(request.getContextPath() + "/product?action=list&user_id=" + userId);
 	}
 
 }

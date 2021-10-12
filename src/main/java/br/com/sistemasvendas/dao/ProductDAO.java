@@ -23,6 +23,7 @@ public class ProductDAO {
 		return instance;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public List<Product> getByUserId(int userId){
 		Transaction transaction = null;
 		List<Product> products = null;

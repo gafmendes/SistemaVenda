@@ -38,10 +38,11 @@ public class Product {
 		this.user = user;
 	}
 
-	public Product(String descricao, Double preco) {
+	public Product(String descricao, Double preco, User user) {
 
 		this.descricao = descricao;
 		this.preco = preco;
+		this.user = user;
 	}
 
 	public int getId() {

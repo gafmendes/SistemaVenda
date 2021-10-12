@@ -2,8 +2,6 @@ package br.com.sistemasvendas.dao;
 
 import java.util.List;
 
-import javax.print.attribute.PrintServiceAttribute;
-
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
