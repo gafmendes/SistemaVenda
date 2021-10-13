@@ -23,7 +23,6 @@ public class Product {
 
 	@ManyToOne(fetch = FetchType.EAGER, optional = false)
 	@JoinColumn(name = "user_id")
-	@NotBlank
 	private User user;
 
 	public Product() {
